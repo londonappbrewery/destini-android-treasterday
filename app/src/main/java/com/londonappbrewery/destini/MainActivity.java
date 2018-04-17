@@ -31,19 +31,24 @@ public class MainActivity extends AppCompatActivity {
         buttonTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String current_text = (String) storyTextView.getText();
 
                 if (mStoryIndex == 1) {  //currently on 1
                     storyTextView.setText(R.string.T3_Story);
                     buttonTop.setText(R.string.T3_Ans1);
                     buttonBottom.setText(R.string.T3_Ans2);
+                } else { //not on first screen anymore
 
-                } else {
-                    storyTextView.setText(R.string.T6_End);
-                    buttonTop.setVisibility(View.GONE);
-                    buttonBottom.setVisibility(View.GONE);
+                    if (current_text == getText(R.string.T2_Story)) {
+                        storyTextView.setText(R.string.T3_Story);
+                        buttonTop.setText(R.string.T3_Ans1);
+                        buttonBottom.setText(R.string.T3_Ans2);
+                    } else {
+                        storyTextView.setText(R.string.T6_End);
+                        buttonTop.setVisibility(View.GONE);
+                        buttonBottom.setVisibility(View.GONE);
+                    }
                 }
-
                 mStoryIndex++;
             }
         });
@@ -54,29 +59,21 @@ public class MainActivity extends AppCompatActivity {
         buttonBottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String current_text = (String) storyTextView.getText();
 
                 if (mStoryIndex == 1) {  //currently on 1
                     storyTextView.setText(R.string.T2_Story);
                     buttonTop.setText(R.string.T2_Ans1);
                     buttonBottom.setText(R.string.T2_Ans2);
-
-
                 } else {
-
-                    String current_text = (String) storyTextView.getText();
-
                     if (current_text ==  getText(R.string.T3_Story)) {
                         storyTextView.setText(R.string.T5_End);
                     } else {
                         storyTextView.setText(R.string.T4_End);
                     }
-
                     buttonTop.setVisibility(View.GONE);
                     buttonBottom.setVisibility(View.GONE);
-
                 }
-
                 mStoryIndex++;
             }
         });
